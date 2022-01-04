@@ -47,13 +47,6 @@ prefixes = layers["prefix"].unique()
 max_values = pd.read_csv("max_values.csv")
 min_values = pd.read_csv("min_values.csv")
 
-fake_vector = pd.read_csv("fake_input.csv")
-
-norm_input = (fake_vector["67682"] - 
-              min_values["0"])/(max_values["0"] - min_values["0"])
-norm_input = pd.DataFrame(norm_input).T
-norm_input = norm_input.to_numpy()
-
 def show_predict_page():
     
     st.set_page_config(page_title='Soil Quality', page_icon = favicon,
@@ -136,7 +129,12 @@ def show_predict_page():
         out_OpenLandMap = {} 
         for i in range(0,len(prefixes)):
             request = "http://api.openlandmap.org/query/point?lat=" + str(lat) + "&lon=" + str(lon) + "&coll=" + prefixes[i] + "&regex=(" + '|'.join(layers[layers["prefix"] == prefixes[i]]["global_covariate_layer"]) + ")" 
-            response = requests.get(request).json()
+            
+            #first call does not work sometimes. No Idea why. So, call API 3 times
+            response = requests.get(request)
+            response = requests.get(request)
+            response = requests.get(request)
+            response = response.json()
             response_without_coord = response['response'][0]
             response_without_coord.pop("lon")
             response_without_coord.pop("lat")
@@ -335,14 +333,17 @@ def show_predict_page():
                                                     prediction6[0][0],
                                                     prediction8[0][0],
                                                     prediction10[0][0]]})
-        #prediction = prediction_tab.mean() 
-        prediction_max = prediction_tab.max()
-        prediction_min = prediction_tab.min()
+        prediction = prediction_tab.mean() 
+        #prediction_max = prediction_tab.max()
+        #prediction_min = prediction_tab.min()
         
+        #st.subheader(
+        #    f"The estimated value of organic carbon is  between \
+        #        {prediction_min[0]:.2f}"+" and "+f"{prediction_max[0]:.2f}" +
+        #    " g/kg")
+            
         st.subheader(
-            f"The estimated value of organic carbon is  between \
-                {prediction_min[0]:.2f}"+" and "+f"{prediction_max[0]:.2f}" +
-            " g/kg")
+            f"The estimated value of organic carbon is {prediction[0]:.2f} g/kg")
         
         for_plot = pd.DataFrame({"lat" : [lat], "lon" : [lon]})
         st.map(for_plot, zoom = 2)
