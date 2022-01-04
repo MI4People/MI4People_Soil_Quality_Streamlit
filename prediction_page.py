@@ -16,7 +16,7 @@ import math
 from sentinelhub import MimeType, CRS, BBox, SentinelHubRequest, \
     DataCollection, bbox_to_dimensions
 
-favicon = 'logo.jpg'
+favicon = 'Logo.JPG'
 
 model0 = K.models.load_model(
     'model_as_in_paper_with_sentinel_regression.h5')
@@ -97,7 +97,7 @@ def show_predict_page():
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
-        st.image('logo.jpg', width=100)
+        st.image('Logo.JPG', width=100)
 
     
     st.write("Please specify the location and the soil depth you want to\
