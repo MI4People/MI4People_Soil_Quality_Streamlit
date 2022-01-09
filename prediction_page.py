@@ -130,10 +130,17 @@ def show_predict_page():
         for i in range(0,len(prefixes)):
             request = "http://api.openlandmap.org/query/point?lat=" + str(lat) + "&lon=" + str(lon) + "&coll=" + prefixes[i] + "&regex=(" + '|'.join(layers[layers["prefix"] == prefixes[i]]["global_covariate_layer"]) + ")" 
             
-            #first call does not work sometimes. No Idea why. So, call API 3 times
+            #first call does not work sometimes. If so, do further calls
+            #But break after 5 calls
             response = requests.get(request)
-            response = requests.get(request)
-            response = requests.get(request)
+            i = 1
+            while response.status_code != 200:
+                if i > 5:
+                    st.subheader("OpenLandMap API for gathering satellite data seems to be down. Pls contact info@mi4people.ord")
+                    break
+                response = requests.get(request)
+                i = i + 1
+
             response = response.json()
             response_without_coord = response['response'][0]
             response_without_coord.pop("lon")
@@ -156,7 +163,7 @@ def show_predict_page():
         #config.sh_client_secret = '5f?[xZBfbcB~Vy;JIboqWq9*rE}TnT4Pju5,eLIF'
         #config.save()
 
-        #acount gmx
+        #acount gmx (Paul's private account)
         config.instance_id = '4df1188c-af0b-4f5d-9803-597915205fb8'
         config.sh_client_id = 'fe7ca65a-8de6-406a-8407-6a747478d635'
         config.sh_client_secret = 'xQkVu:za1Y156N/E6E3^j-KBE5E)sZ,Zzn6obAEs'
@@ -333,7 +340,7 @@ def show_predict_page():
                                                     prediction6[0][0],
                                                     prediction8[0][0],
                                                     prediction10[0][0]]})
-        prediction = prediction_tab.mean() 
+        prediction = prediction_tab.median() 
         #prediction_max = prediction_tab.max()
         #prediction_min = prediction_tab.min()
         
