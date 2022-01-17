@@ -115,7 +115,7 @@ def show_predict_page():
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
-        st.image('Logo_with_Title.jpg', width=100)
+        st.image('Logo_with_Title.png', width=100)
 
     
     # some instructions for the user
