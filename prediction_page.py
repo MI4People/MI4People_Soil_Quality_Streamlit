@@ -115,9 +115,8 @@ def show_predict_page():
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
-        st.markdown("[![Foo](Logo.JPG](https://www.mi4people.org/)")
-        #st.image('Logo.JPG', width=100) 
-        st.write("MI4People")
+        #st.image('Logo_with_Title.JPG', width=100) 
+        st.markfown("[![this is an image link](upload://Logo_with_Title.JPG)](https://www.mi4people.org/)")
 
     
     # some instructions for the user
