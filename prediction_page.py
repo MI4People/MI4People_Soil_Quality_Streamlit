@@ -74,35 +74,37 @@ def show_predict_page():
     # Define side bar "What is this app about?". It is used only as information
     # for the user and can be closed by pressing x.
     st.sidebar.title("What is this app about?")
-    st.sidebar.write("This small Web App is an demonstrative MVP for the future\
-                     MI4People’s Soil Quality Prediction System.")
+    st.sidebar.write("This small Web App is a demonstrative PoC/MVP for the\
+                     MI4People’s Soil Quality Evaluation System currently under\
+                     development by MI4People (mi4people.org).")
     st.sidebar.write("The Soil Quality Prediction System will be able to take\
                      GPS coordinates from a mobile device and return most\
                      important soil quality factors that are predicted by means\
                      of satellite data and AI. This system will be open-source\
-                     and should be applied to enable small farmers in developing\
-                     countries to better understand their soil, make\
-                     intelligent choice about which crops to plant, and to\
-                     fertilize and protect soil from pests in a more suitable,\
-                     sustainable, and environmental-friendly manner. It will\
-                     lead to better crop yields with eco-friendly farming and,\
-                     as consequences, to more stable food supply chains,\
-                     less famine and undernutrition. The system will be\
-                     free of charge.")
-    st.sidebar.write("The presented MVP mimics this system. Currently it\
-                     predicts only one soil quality factor: organic carbon.\
-                     You should specify the coordinates (as decimal degrees)\
-                     as it would be an input from a mobile device. The current\
-                     MVP is focused on Africa, so, please use only coordinates\
-                     within African continent. If you do not do so, you’ll get\
-                     an error message. Please, also use only meaningful\
-                     locations for prediction of organic carbon in the soil,\
-                     i.e., no oceans, concreted areas in cities or similar.\
-                     Otherwise the prediciton will be meaningless.")
-    st.sidebar.write("You also should specify depth at which prediction should\
-                     be made (in cm)")
-    st.sidebar.write("If you have quastions or observe a bug or an error message\
-                     please contact us via:")
+                     and should be applied to enable small farmers, especially,\
+                     in the developing countries to better understand their\
+                     soil, make intelligent choices about which crops to plant,\
+                     to fertilize, and protect soil from pests in a more\
+                     suitable, sustainable, and environmental-friendly manner.\
+                     It will lead to better crop yields with eco-friendly\
+                     farming and, consequently, to more stable food supply\
+                     chains, less famine and undernutrition. The system will\
+                     be free of charge.")
+    st.sidebar.write("The presented PoC/MVP illustrates the basic working of\
+                     the system being developed. Currently it predicts only one\
+                     soil quality factor: organic carbon. To test this preview,\
+                     specify the GPS coordinates (as decimal degrees) as it\
+                     would be an input from a mobile device. The current\
+                     PoC/MVP is focused on Africa, so, please use only\
+                     coordinates within African continent. If you do not do so,\
+                     you’ll get an error message. Please also use only\
+                     meaningful locations for prediction of organic carbon in\
+                     the soil, i.e., no oceans, concreted areas in cities or\
+                     similar, otherwise, the prediction will be meaningless.")
+    st.sidebar.write("You also should specify soil depth at which prediction\
+                     should be made (in cm)")
+    st.sidebar.write("If you have questions or observe a bug or an error\
+                     message, please contact us via:")
     st.sidebar.markdown('<a href="mailto:info@mi4people.org">info@mi4people.org</a>',
                         unsafe_allow_html=True)
     
