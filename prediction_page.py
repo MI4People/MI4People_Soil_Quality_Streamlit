@@ -116,6 +116,7 @@ def show_predict_page():
         st.title("Organic Carbon Prediction")
     with col2:
         st.image('Logo.JPG', width=100) 
+        st.write("[link](https://www.mi4people.org/)")
 
     
     # some instructions for the user
@@ -141,7 +142,7 @@ def show_predict_page():
                           step = 1.0,
                           format = "%.6f")
     # depth input is defined as a slider.
-    depth = st.slider("Depth at which prediction should be made (in cm)",
+    depth = st.slider("Soil depth at which prediction should be made (in cm)",
                       0, 50, 10, 1)
     
     # Defines a "Predict" button that is also store as a binary variable.
