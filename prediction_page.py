@@ -209,10 +209,17 @@ def show_predict_page():
         #config.sh_client_secret = '5f?[xZBfbcB~Vy;JIboqWq9*rE}TnT4Pju5,eLIF'
         #config.save()
 
-        #acount gmx (Paul's private account)
-        config.instance_id = '4df1188c-af0b-4f5d-9803-597915205fb8'
-        config.sh_client_id = 'fe7ca65a-8de6-406a-8407-6a747478d635'
-        config.sh_client_secret = 'xQkVu:za1Y156N/E6E3^j-KBE5E)sZ,Zzn6obAEs'
+        #acount gmx (Paul's private account) (already not working)
+        #config.instance_id = '4df1188c-af0b-4f5d-9803-597915205fb8'
+        #config.sh_client_id = 'fe7ca65a-8de6-406a-8407-6a747478d635'
+        #config.sh_client_secret = 'xQkVu:za1Y156N/E6E3^j-KBE5E)sZ,Zzn6obAEs'
+        #config.save()
+        
+        
+        #acount info@mi4people
+        config.instance_id = 'f656e66c-857f-4c92-8245-15a29d0a1294'
+        config.sh_client_id = '0b52835a-4057-4d05-93da-92a31c035e08'
+        config.sh_client_secret = 'h@D{:r@ZEW+(MbdT^c>^SYc3h2/6.aJ<5KXzB)@K'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
