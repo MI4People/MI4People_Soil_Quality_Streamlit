@@ -217,7 +217,7 @@ def show_predict_page():
         
         
         #acount info@mi4people
-        config.instance_id = 'f656e66c-857f-4c92-8245-15a29d0a1294'
+        config.instance_id = '980e0fd1-2e02-4036-a627-1ace3a54ace5'
         config.sh_client_id = '0b52835a-4057-4d05-93da-92a31c035e08'
         config.sh_client_secret = 'h@D{:r@ZEW+(MbdT^c>^SYc3h2/6.aJ<5KXzB)@K'
         config.save()
