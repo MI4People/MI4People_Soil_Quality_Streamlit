@@ -216,10 +216,10 @@ def show_predict_page():
         #config.save()
         
         
-        #acount info@mi4people
-        config.instance_id = '980e0fd1-2e02-4036-a627-1ace3a54ace5'
-        config.sh_client_id = '0b52835a-4057-4d05-93da-92a31c035e08'
-        config.sh_client_secret = 'h@D{:r@ZEW+(MbdT^c>^SYc3h2/6.aJ<5KXzB)@K'
+        #acount Paul's private gmail
+        config.instance_id = '2631461d-5d7a-4cbd-ad2e-c1dfd7c1adae'
+        config.sh_client_id = 'b0cc5e1f-ad99-46e8-85d7-de2918067e3c'
+        config.sh_client_secret = '5^[Et6&]6k|~P,t,6ByL((WN5?U]}_#{mdqUF0Ry'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
