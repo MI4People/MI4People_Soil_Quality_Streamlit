@@ -111,7 +111,7 @@ def show_predict_page():
     
     # Here you see two columns that must be defined to place page title and
     # MI4People logo side by side
-    col1, mid, col2 = st.columns([20,1,5])
+    col1, mid, col2 = st.columns([15,1,5])
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
