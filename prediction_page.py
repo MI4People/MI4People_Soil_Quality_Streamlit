@@ -111,7 +111,7 @@ def show_predict_page():
     
     # Here you see two columns that must be defined to place page title and
     # MI4People logo side by side
-    col1, mid, col2 = st.columns([15,1,5])
+    col1, mid, col2 = st.columns([20,1,5])
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
@@ -130,14 +130,14 @@ def show_predict_page():
     # It allows not only to type a number but also to define the number by clicking
     # "+" and "-" buttons. It looks like one cannot switch it off. The "step"
     # defines how much "+" and "-" buttons change the input.
+    lat = st.number_input('Latitude', min_value=-34.833333,
+                          max_value=37.347222,
+                          value=-6.088688,
+                          step=1.0,
+                          format="%.6f")
     lon = st.number_input('Longitude', min_value = -17.520278,
                           max_value = 51.281214,
                           value = 36.435938,
-                          step = 1.0,
-                          format = "%.6f")
-    lat = st.number_input('Latitude', min_value = -34.833333,
-                          max_value = 37.347222,
-                          value = -6.088688,
                           step = 1.0,
                           format = "%.6f")
     # depth input is defined as a slider.
