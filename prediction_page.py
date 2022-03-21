@@ -224,7 +224,7 @@ def show_predict_page():
         
         #acount Paul's private mytum
         config.instance_id = 'a284e611-0a26-40d6-8a53-8f2da9b300aa'
-        config.sh_client_id = '03dc4970-f929-4947-b7f8-94d939b85e51'
+        config.sh_client_id = '41b481f5-8640-472f-a58c-80ba6ad1f480'
         config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
         config.save()
         
