@@ -222,7 +222,7 @@ def show_predict_page():
         #config.sh_client_secret = '5^[Et6&]6k|~P,t,6ByL((WN5?U]}_#{mdqUF0Ry'
         #config.save()
         
-        #acount Paul's private gmail
+        #acount Paul's private mytum
         config.instance_id = 'a284e611-0a26-40d6-8a53-8f2da9b300aa'
         config.sh_client_id = '0c0151f7-3fb8-4e9a-a7eb-00f7335bc53e'
         config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
