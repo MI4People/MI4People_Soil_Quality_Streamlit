@@ -50,19 +50,19 @@ prefixes = layers["prefix"].unique()
 
 # Input values must be normalized as during the training of the model. We
 # use min-max-normalization. The velues below were obtained during the training
-# process on training data set. 
+# process on training data set.
 max_values = pd.read_csv("max_values.csv")
 min_values = pd.read_csv("min_values.csv")
 
 
 # The function below defines the actual web page. it is called in app.py.
 def show_predict_page():
-    
+
     # these lines are to define favicon and name of the web page in the tab of
     # the browser
     st.set_page_config(page_title='Soil Quality', page_icon = favicon,
                             layout = 'wide', initial_sidebar_state = 'auto')
-    
+
     # these lines are to define the width of the sidebar "What is this app about?"
     st.markdown(f'''
     <style>
@@ -70,7 +70,7 @@ def show_predict_page():
         section[data-testid="stSidebar"] .css-1d391kg {{width: 40rem;}}
     </style>
     ''',unsafe_allow_html=True)
-    
+
     # Define side bar "What is this app about?". It is used only as information
     # for the user and can be closed by pressing x.
     st.sidebar.title("What is this app about?")
@@ -107,22 +107,25 @@ def show_predict_page():
                      message, please contact us via:")
     st.sidebar.markdown('<a href="mailto:info@mi4people.org">info@mi4people.org</a>',
                         unsafe_allow_html=True)
-    
-    
+
+
     # Here you see two columns that must be defined to place page title and
     # MI4People logo side by side
     col1, mid, col2 = st.columns([20,1,5])
     with col1:
         st.title("Organic Carbon Prediction")
     with col2:
-        st.image('Logo_with_Title.png', width=100)
-
-    
-    # some instructions for the user
-    st.write("Please specify the location and the soil depth you want to\
+        st.image('Logo_with_Title.png', width=100, help = "Please specify\
+             the location and the soil depth you want to\
              have prediction for. Please read the description to the left\
              before you start.")
-    
+
+
+    # some instructions for the user
+    st.write("Help",help = "Please specify the location and the soil depth you want to\
+             have prediction for. Please read the description to the left\
+             before you start.")
+
     # Here is the user's input for longitude, latitude, and depth. This is
     # required to say the model were to make predictions. "min_value" and "max_value"
     # correspond to boundaries of African continent. "value" is the default number.
@@ -143,26 +146,26 @@ def show_predict_page():
     # depth input is defined as a slider.
     depth = st.slider("Soil depth at which prediction should be made (in cm)",
                       0, 50, 10, 1)
-    
+
     # Defines a "Predict" button that is also store as a binary variable.
     # Clicking on this button changes the value to True
     ok = st.button("Predict")
     if ok:
         # Store user's input for location as a data frame
         input_user = pd.DataFrame([lon, lat, depth])
-        
-        # Get data from OpenLandMap. More on this data, you can find in 
+
+        # Get data from OpenLandMap. More on this data, you can find in
         # "Soil_Data_Preparation_v0.2.R".
         # Pay attention to the otder of the variables.
         # Order is important for input for neural network model
         # As mentioned above, we make a call per prefix
-        out_OpenLandMap = {} 
+        out_OpenLandMap = {}
         for i in range(0,len(prefixes)):
             # define call url. it contains location, and prefix and name of the
             # required global layer. To make call for several layers simultaneously,
             # we need to separate layer names by | and put result into brackets.
-            request = "http://api.openlandmap.org/query/point?lat=" + str(lat) + "&lon=" + str(lon) + "&coll=" + prefixes[i] + "&regex=(" + '|'.join(layers[layers["prefix"] == prefixes[i]]["global_covariate_layer"]) + ")" 
-            
+            request = "http://api.openlandmap.org/query/point?lat=" + str(lat) + "&lon=" + str(lon) + "&coll=" + prefixes[i] + "&regex=(" + '|'.join(layers[layers["prefix"] == prefixes[i]]["global_covariate_layer"]) + ")"
+
             # First call does not work sometimes. If so, repeat the call
             # But break after 5 calls with information for the user that
             # OpenLandMap API seems to have problems
@@ -177,25 +180,25 @@ def show_predict_page():
 
             response = response.json()
             response_without_coord = response['response'][0]
-            
+
             # delete coordinates from response. Otherwise we would have
             # (the same) coordinates for repsonses for each prefix.
             response_without_coord.pop("lon")
             response_without_coord.pop("lat")
             out_OpenLandMap.update(response_without_coord)
-        
+
         # Order the final combined response in the order as used by the model
         # It is the same order as used in 'Global_covariate_layers.csv'
         out_OpenLandMap = pd.DataFrame([out_OpenLandMap]).T
         out_OpenLandMap = out_OpenLandMap.reindex(
             index=layers['global_covariate_layer'])
-        
+
         # combine users input with data from OpenLandMap
         input_user_and_out_OpenLandMap = input_user.append(
             out_OpenLandMap, ignore_index=True)
-        
-        
-        
+
+
+
         # Now, get data from SentinelHub. You can find more on this data in
         # Download_Sentinel_2_Pixels.ipynb.
         # Sentinel Hub requires credentials to make calls. Free access is
@@ -214,24 +217,24 @@ def show_predict_page():
         #config.sh_client_id = 'fe7ca65a-8de6-406a-8407-6a747478d635'
         #config.sh_client_secret = 'xQkVu:za1Y156N/E6E3^j-KBE5E)sZ,Zzn6obAEs'
         #config.save()
-        
-        
+
+
         #acount Paul's private gmail
         #config.instance_id = '2631461d-5d7a-4cbd-ad2e-c1dfd7c1adae'
         #config.sh_client_id = 'b0cc5e1f-ad99-46e8-85d7-de2918067e3c'
         #config.sh_client_secret = '5^[Et6&]6k|~P,t,6ByL((WN5?U]}_#{mdqUF0Ry'
         #config.save()
-        
+
         #acount Paul's private mytum
         config.instance_id = 'a284e611-0a26-40d6-8a53-8f2da9b300aa'
         config.sh_client_id = '41b481f5-8640-472f-a58c-80ba6ad1f480'
         config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
         config.save()
-        
-        # resolution (in meters) of satellite data when making a call to 
+
+        # resolution (in meters) of satellite data when making a call to
         # SentinelHub data.
         resolution = 20
-        
+
         # The code below is based on tutorial from Sentinel Hub
         # https://sentinelhub-py.readthedocs.io/en/latest/examples/process_request.html
         # important here is that we use all 13 spectral bands of Sentinel-2
@@ -269,19 +272,19 @@ def show_predict_page():
                             sample.B12];
                 }
         """
-        
+
         out_SentinelHub = []
-        
+
         # Sentinel Hub is built to request pictures from Sentinel-2. For current
         # model, however, we need only the values of the pixel exactly at the
         # location of interest. So, we request a very small picture (bbox) with
         # location of interest in the middle. If the response  is a not a 1x1
         # pixel "picture", we take the most central pixel.
         coord = [lon - 0.0001, lat - 0.0001, lon + 0.0001, lat + 0.0001]
-    
+
         bbox = BBox(bbox=coord, crs=CRS.WGS84)
         size = bbox_to_dimensions(bbox, resolution=resolution)
-    
+
         request_all_bands = SentinelHubRequest(
             evalscript=evalscript_all_bands,
             input_data=[
@@ -298,37 +301,37 @@ def show_predict_page():
             size=size,
             config=config
             )
-    
+
         all_bands_response = request_all_bands.get_data()
-    
-    
+
+
         pixels_raw = all_bands_response[0] # get the pixals
-    
+
         # just to be sure that we indeed get only one pixel. Otherwise take the one from the center
         xStart = math.floor((pixels_raw.shape[0] - 1) / 2)
         yStart = math.floor((pixels_raw.shape[1] - 1) / 2)
         xEnd = xStart + 1
         yEnd = yStart + 1
         pixels = pixels_raw[xStart:xEnd,yStart:yEnd,0:13]
-        
+
         out_SentinelHub.append(pixels[0][0].tolist())
         out_SentinelHub = pd.DataFrame(out_SentinelHub,
                                        columns=["B01","B02","B03","B04","B05",
                                                 "B06","B07","B08","B8A","B09",
                                                 "B10","B11","B12"])
-    
-        
+
+
         # Add response from Sentinel Hub to user's input and response from
         # OpenLandMap. The result is the input for our model
         final_response = input_user_and_out_OpenLandMap.append(out_SentinelHub.T,
                                                            ignore_index=True)
-        
+
         #Normalize the input using min-max-normalization.
-        norm_input = (final_response[0] - 
-                      min_values["0"])/(max_values["0"] - min_values["0"]) 
-        norm_input = pd.DataFrame(norm_input).T 
+        norm_input = (final_response[0] -
+                      min_values["0"])/(max_values["0"] - min_values["0"])
+        norm_input = pd.DataFrame(norm_input).T
         norm_input = norm_input.to_numpy()
-        
+
         # Make prediction. Our current model can only predict oc values between
         # 0 and 120 (by predicting ln(oc+1)). See also "As in Paper v1.1.ipynb"
         # Therefore, we need to make some transformations.
@@ -337,11 +340,11 @@ def show_predict_page():
         prediction = np.exp(prediction)-1
         if prediction[0][0] > 120:
             prediction[0][0] = 120
-        
-        # Show the prediction to the user    
+
+        # Show the prediction to the user
         st.subheader(
             f"The estimated value of organic carbon is {prediction[0][0]:.2f} g/kg")
-        
+
         # Plot the map showing the location of the prediction
         for_plot = pd.DataFrame({"lat" : [lat], "lon" : [lon]})
         st.map(for_plot, zoom = 2)
