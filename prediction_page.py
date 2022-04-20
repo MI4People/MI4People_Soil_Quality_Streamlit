@@ -223,9 +223,15 @@ def show_predict_page():
         #config.save()
         
         #acount Paul's private mytum
-        config.instance_id = 'a284e611-0a26-40d6-8a53-8f2da9b300aa'
-        config.sh_client_id = '41b481f5-8640-472f-a58c-80ba6ad1f480'
-        config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
+        #config.instance_id = 'a284e611-0a26-40d6-8a53-8f2da9b300aa'
+        #config.sh_client_id = '41b481f5-8640-472f-a58c-80ba6ad1f480'
+        #config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
+        #config.save()
+        
+        #acount Marias's MI4People
+        config.instance_id = '8d686c2e-20ac-4a37-aeaf-d89dedb3d040'
+        config.sh_client_id = '476fa8fe-5d85-40fb-b884-8c9332487a31'
+        config.sh_client_secret = 'M[V&/#dEb&A7*&|NXURK2;(;!%2_%U(wrk{p@#x)'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
