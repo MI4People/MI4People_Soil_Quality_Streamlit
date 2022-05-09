@@ -130,19 +130,23 @@ def show_predict_page():
     # It allows not only to type a number but also to define the number by clicking
     # "+" and "-" buttons. It looks like one cannot switch it off. The "step"
     # defines how much "+" and "-" buttons change the input.
-    lon = st.number_input('Longitude', min_value = -17.520278,
-                          max_value = 51.281214,
-                          value = 36.435938,
-                          step = 1.0,
-                          format = "%.6f")
-    lat = st.number_input('Latitude', min_value = -34.833333,
-                          max_value = 37.347222,
-                          value = -6.088688,
-                          step = 1.0,
-                          format = "%.6f")
-    # depth input is defined as a slider.
-    depth = st.slider("Soil depth at which prediction should be made (in cm)",
-                      0, 50, 10, 1)
+    col30, col31, col32 = st.columns([1, 1, 1])
+    with col30:
+        lat = st.number_input('Latitude', min_value=-34.833333,
+                              max_value=37.347222,
+                              value=-6.088688,
+                              step=1.0,
+                              format="%.6f")
+    with col31:
+        lon = st.number_input('Longitude', min_value = -17.520278,
+                              max_value = 51.281214,
+                              value = 36.435938,
+                              step = 1.0,
+                              format = "%.6f")
+    with col32:
+        # depth input is defined as a slider.
+        depth = st.slider("Soil depth (in cm)",
+                          0, 50, 10, 1)
     
     # Defines a "Predict" button that is also store as a binary variable.
     # Clicking on this button changes the value to True
