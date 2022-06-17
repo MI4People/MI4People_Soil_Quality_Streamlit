@@ -232,10 +232,10 @@ def show_predict_page():
         #config.sh_client_secret = 'NKFMV3Sc<0jq^PQJNr?UC8EdxN7J8}L,1/PAX}%I'
         #config.save()
         
-        #acount onmicrosoft
-        config.instance_id = '51da6a09-1a3d-4e1d-8a8d-84bb2acf75ac'
-        config.sh_client_id = '38164cb7-c41d-4c77-b1d7-94c3bf5727a7'
-        config.sh_client_secret = 'K2UHRw*|{qeG[9v);CCsSCzfLsixIXKr:fH!ggST'
+        #acount management
+        config.instance_id = '75de2bd6-2e10-43b1-b8f9-5444ec9451f0'
+        config.sh_client_id = '876e0e19-75ce-4909-9b9c-cc64d9795b5e'
+        config.sh_client_secret = 'j/b2MGMnkLQOaMLwv)LW(yz,gYEFh@SXcmCqpPX8'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
