@@ -195,9 +195,12 @@ def show_predict_page():
             index=layers['global_covariate_layer'])
         
         # combine users input with data from OpenLandMap
-        input_user_and_out_OpenLandMap = input_user.append(
-            out_OpenLandMap, ignore_index=True)
+        #input_user_and_out_OpenLandMap = input_user.append(
+        #    out_OpenLandMap, ignore_index=True)
         
+        input_user_and_out_OpenLandMap = pd.concat([input_user,
+                                                    out_OpenLandMap],
+                                                   ignore_index=True)
         
         
         # Now, get data from SentinelHub. You can find more on this data in
