@@ -236,9 +236,9 @@ def show_predict_page():
         #config.save()
         
         #acount maria
-        config.instance_id = 'b0e53057-f8c8-432a-9738-e504ca86609a'
-        config.sh_client_id = '5521ef9d-5100-456a-88e5-f6922d891dba'
-        config.sh_client_secret = '[C2c.8_5pA/>.^[0GH0{Q6G7+_KeOi{RRca>bE^c'
+        config.instance_id = 'ffa2fa2a-799c-401d-893d-dfd9bf100660'
+        config.sh_client_id = '27901141-2048-44b5-9b97-6adef7504430'
+        config.sh_client_secret = 'T}8)+7yXExie{g|U9ca0RmtXaBOb)YrLBRUgvd-I'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
