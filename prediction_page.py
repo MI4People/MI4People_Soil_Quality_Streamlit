@@ -333,8 +333,12 @@ def show_predict_page():
         
         # Add response from Sentinel Hub to user's input and response from
         # OpenLandMap. The result is the input for our model
-        final_response = input_user_and_out_OpenLandMap.append(out_SentinelHub.T,
-                                                           ignore_index=True)
+        #final_response = input_user_and_out_OpenLandMap.append(out_SentinelHub.T,
+        #                                                   ignore_index=True)
+        
+        final_response = pd.concat([input_user_and_out_OpenLandMap,
+                                                    out_SentinelHub.T],
+                                                   ignore_index=True)
         
         #Normalize the input using min-max-normalization.
         norm_input = (final_response[0] - 
