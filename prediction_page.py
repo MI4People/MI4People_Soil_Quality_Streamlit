@@ -174,7 +174,7 @@ def show_predict_page():
             i = 1
             while response.status_code != 200: # Status code = 200 means successful call
                 if i > 5:
-                    st.subheader("An API for gathering satellite data seems to be down. Pls contact info@mi4people.ord")
+                    st.subheader("An API for gathering satellite data seems to be down. Pls contact info@mi4people.org")
                     break
                 response = requests.get(request)
                 i = i + 1
@@ -236,9 +236,9 @@ def show_predict_page():
         #config.save()
         
         #acount maria
-        config.instance_id = '0ecd8e65-40cb-41df-9e61-2cf998a4a1b7'
-        config.sh_client_id = '7e282dfc-0001-4bd3-ab68-6cd74b0ca0a3'
-        config.sh_client_secret = 'KUC9JSB8qRqho7y9lX6gRvwbW3Qg5a4xVi7Ypa1Z'
+        config.instance_id = '6006f07f-20e1-493f-a377-3a7e5774f08e'
+        config.sh_client_id = '7f37a478-db90-48a0-a299-e0ad0584efe2'
+        config.sh_client_secret = 'FChwsNKWHp36HGVR99egj635GOvGFjzx'
         config.save()
         
         # resolution (in meters) of satellite data when making a call to 
